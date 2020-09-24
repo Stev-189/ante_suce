@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Antecesor y Sucesor</title>
+  <style>
+    :root{
+      --margin        :1vw;
+      --color         :#063c48;
+      --backgrouncolor:#13c0e5;
+      --backgrouncolorS:#063c48;
+      --hcolor       :#f9fdfe;
+    }
+    *{
+      color:var(--color);
+    }
+    body{
+      display: flex;
+      flex-direction: column;
+      background-color:var(--backgrouncolor);
+    }
+    #section-h1{
+      position: absolute;
+      background-color: var(--backgrouncolorS);
+      top:0;
+      left: 0;
+      margin: 0;
+      border: 0;
+      width: 100vw;
+      height: 7vh;
+    }
+    h1{
+      margin: var(--margin) auto;
+      margin-top: 0;
+      text-align: center;
+      font-size: 5vh;
+      color:var(--hcolor);
+    }
+    h3{
+      margin: 0 auto;
+      margin-top: 1vh;
+      text-align: center;
+      font-size: 2rem;
+      color:var(--hcolor);
+    }
+    section{
+      margin: var(--margin) auto;
+      margin-top: 7vh;
+      margin-bottom: 1vh;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: baseline;
+      flex-wrap: wrap;
+      width: 100vw;
+    }
+    #numeros{
+      width: 500px;
+    }
+    button{
+      width: 140px;
+      height: 140px;
+      font-size: 80px;
+    }
+    #texto{
+      margin-top: 0;
+      position: absolute;
+      background-color: var(--backgrouncolorS);
+      bottom:0;
+      left: 0;
+      margin: 0;
+      border: 0;
+      width: 100vw;
+    }
+    #num10{
+      background-color: aqua;
+    }
+    #num9{
+      background-color:blueviolet;
+    }
+    #num8{
+      background-color:brown;
+    }
+    #num7{
+      background-color:burlywood;
+    }
+    #num6{
+      background-color:chartreuse;
+    }
+    #num5{
+      background-color:chocolate;
+    }
+    #num4{
+      background-color:coral;
+    }
+    #num3{
+      background-color:crimson;
+    }
+    #num2{
+      background-color:deeppink;
+    }
+    #num1{
+      background-color:darkorchid;
+    }
+    button:hover{
+      opacity: 0.5;
+    }
+    
+  </style>
+</head>
+<body>
+  <section id="section-h1">
+    <h1>Antecesor y Sucesor</h1>
+  </section>
+<section id="numeros">
+  <button id="num1" class="btn" onclick="fIdBtn(this)">1</button>
+  <button id="num2" class="btn" onclick="fIdBtn(this)">2</button>
+  <button id="num3" class="btn" onclick="fIdBtn(this)">3</button>
+  <button id="num4" class="btn" onclick="fIdBtn(this)">4</button>
+  <button id="num5" class="btn" onclick="fIdBtn(this)">5</button>
+  <button id="num6" class="btn" onclick="fIdBtn(this)">6</button>
+  <button id="num7" class="btn" onclick="fIdBtn(this)">7</button>
+  <button id="num8" class="btn" onclick="fIdBtn(this)">8</button>
+  <button id="num9" class="btn" onclick="fIdBtn(this)">9</button>
+  <button id="num10" class="btn" onclick="fIdBtn(this)">10</button>
+</section>
+<section id="texto">
+
+</section>
+<script>
+let aNumber=[['Sucesor',2],['Sucesor',9],['Antecesor',8],['Antecesor',7],['Sucesor',1],['Sucesor',6],['Antecesor',2],['Antecesor',5],['Sucesor',4],['Sucesor',3],['Antecesor',10]],
+    idBtn=[],
+    postANumber=0,
+    nArray=0
+    
+const fIdBtn=(e)=>{
+  idBtn.splice(0,idBtn.length)
+  idBtn.push(e.id)
+  idBtn.push(parseFloat(e.id.replace('num','')))
+  },
+  sPregunta=(e)=>{
+    if(e[0]==='Sucesor'){
+      nArray=[e[0],e[1]+1]
+    }
+    if(e[0]==='Antecesor'){
+      nArray=[e[0],e[1]-1]
+    }
+    document.getElementById('texto').innerHTML=`<h3>Presiona sobre el numero ${e[0]} del numero ${e[1]} </h3>`
+  },
+  $coint=document.createElement("audio"),
+  $nop=document.createElement("audio")
+  $coint.src="sound.mp3"
+  $nop.src="nop.mp3"
+
+
+window.onload=sPregunta(aNumber[postANumber])
+document.addEventListener("click",(e)=>{
+    if(e.target.matches(".btn")){
+      if(postANumber<aNumber.length){
+        if(nArray[1]===idBtn[1]){
+          $coint.play()
+          postANumber++
+          sPregunta(aNumber[postANumber])
+        } else {
+          $nop.play()
+        }
+      } else {
+      document.getElementById('texto').innerHTML=`<h3>Gracias por jugar</h3>`
+      }
+    }
+  })
+</script>
+</body>
+</html>
