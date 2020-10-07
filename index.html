@@ -159,11 +159,17 @@
         nArray=[e[0],e[1]-1]
       }
       document.getElementById('texto').innerHTML=`<h3 id="h3Speak">¿Cual es el ${e[0]}<br> del número ${e[1]}? 🔊</h3>`
+      setTimeout(()=>{speakh3()}, 1000);
     },
     $coint=document.createElement("audio"),
     $nop=document.createElement("audio")
     $coint.src="sound.mp3"
     $nop.src="nop.mp3"
+
+    function speakh3(){
+      let texto=document.querySelector('#texto h3').textContent.replace(/🔊/,'')
+      const hablar=(texto)=>speechSynthesis.speak(new SpeechSynthesisUtterance(texto))
+      hablar(texto)}
 
     window.onload=sPregunta(aNumber[postANumber])
     document.addEventListener("click",(e)=>{
@@ -180,13 +186,7 @@
         document.getElementById('texto').innerHTML=`<h3>Gracias por jugar</h3>`
         }
       }
-  
-    if(e.target.matches("#h3Speak")){
-      let texto=document.querySelector('#texto h3').textContent.replace(/🔊/,'')
-      const hablar=(texto)=>speechSynthesis.speak(new SpeechSynthesisUtterance(texto))
-      hablar(texto)
-    }
-    })  
+    if(e.target.matches("#h3Speak")) speakh3()})  
   </script>
 </body>
 </html>
